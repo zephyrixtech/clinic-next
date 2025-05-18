@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 // Add a request interceptor to attach JWT token
 axiosInstance.interceptors.request.use(
   async (config) => {
-    const session = await getSession();
+    const session: any = await getSession();
     if (session?.token) {
       config.headers.Authorization = `Bearer ${session.token}`;
     }

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { getServerSession } from 'next-auth'
 import { SessionProvider } from '@/components/SessionProvider'
+import { seedAdmin } from "@/lib/seed-admin";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,4 +28,8 @@ export default async function RootLayout({
       </body>
     </html>
   )
+}
+
+if (process.env.NODE_ENV === "development") {
+  seedAdmin().catch(console.error);
 }
